@@ -1,0 +1,2 @@
+# dynamic-dns
+DNS dinámico
