@@ -1,0 +1,8 @@
+services:
+  ddns:
+    build: .
+    image: ddns
+    container_name: ddns
+    ports:
+      - 8080:80
+    env_file: .env
