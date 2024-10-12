@@ -1,0 +1,5 @@
+- id: status
+  execute-command: "/dynamic-dns/status/status.sh"
+  command-working-directory: "/dynamic-dns"
+  include-command-output-in-response: true
+  include-command-output-in-response-on-error: true
