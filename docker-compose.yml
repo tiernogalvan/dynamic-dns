@@ -1,6 +1,6 @@
 services:
   ddns:
-    build: .
+    build: https://github.com/tiernogalvan/dynamic-dns.git
     image: dynamic-dns
     container_name: dynamic-dns
     ports:
