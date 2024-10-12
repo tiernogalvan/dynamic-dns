@@ -12,7 +12,7 @@
 . ./get-ionos-url.env
 
 date="$(date +"%Y-%m-%d %H:%M:%S %Z")"
-if [ -z $IONOS_PUBLIC_PREFIX ] || [ -z $IONOS_SECRET ]; then
+if [ -z $IONOS_PUBLIC_PREFIX ] || [ -z $IONOS_SECRET ] || [ -z $DOMAIN_NAME ]; then
   echo "ERROR: Variables no configuradas IONOS_PUBLIC_PREFIX, IONOS_SECRET"
   exit 1
 fi
@@ -20,12 +20,12 @@ fi
 API_KEY="${IONOS_PUBLIC_PREFIX}.${IONOS_SECRET}"
 URL='https://api.hosting.ionos.com/dns/v1/dyndns'
 
-data='{
-  "domains": [
-    "lan.tiernogalvan.es"
+data="{
+  \"domains\": [
+    \"${DOMAIN_NAME}\"
   ],
-  "description": "Tierno lan dyndns"
-}'
+  \"description\": \"Dynamic DNS\"
+}"
 curl -s -X POST "$URL" -H "X-API-Key: $API_KEY" \
   -H "Content-Type: application/json" \
   --data "$data"
