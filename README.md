@@ -17,7 +17,8 @@ IONOS funciona en dos pasos:
 
 - Entra en <https://my.ionos.es/shop/product/ionos-api> para generar una API key como se explica en [esta guia](https://developer.hosting.ionos.es/docs/getstarted).
 
-- Copia el *public_prefix* y el *secret* y pégalo en el fichero <utils/get-ionos-url.env> junto a tu dominio:
+- Copia el *public_prefix* y el *secret* y pégalo en el fichero [utils/get-ionos-url.env](utils/get-ionos-url.env-sample) junto a tu dominio:
+
 ```
 IONOS_PUBLIC_PREFIX=''
 IONOS_SECRET=''
@@ -25,16 +26,23 @@ DOMAIN_NAME=''
 ```
 
 - Tras ello, ejecuta el script [utils/get-ionos-url.sh](utils/get-ionos-url.sh)
+
 ```
 $ cd utils
+$ cp get-ionos-url.env-sample get-ionos-url.env
+$ # Editar get-ionos-url.env
+$
 $ ./get-ionos-url.sh
 ```
 
 El resultado del script te proporciona un json con una **updateUrl**.
 
-2. Copia la **updateUrl** en el fichero [.env](.env) y ejecuta el contenedor docker, que la leerá y llamará periodicamente.
+2. Copia la **updateUrl** en el fichero [.env](.env-sample) y ejecuta el contenedor docker, que la leerá y llamará periodicamente.
 
 ```
+$ cp .env-sample .env
+$ # Editar .env
+$
 $ docker compose up -d
 ```
 
@@ -45,7 +53,8 @@ El contenedor incluye un webhook de monitorización que indica:
 - Si no se ha ejecutado el DNS dinámico en los últimos 5 minutos.
 - Si se ha recibido una respuesta de error de IONOS.
 
-El webhook está en `/status` y el <docker-compose.yml> lo pone por defecto en el puerto 8080:
+El webhook está en `/status` y el [docker-compose.yml](docker-compose.yml) lo pone por defecto en el puerto 8080:
+
 ```
 $ curl localhost:8080/status
 {
