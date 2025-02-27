@@ -69,6 +69,11 @@ $ curl localhost:8080/status
 Para más info revisa el script <status/status.sh>.
 
 
+## Por hacer
+
+- Actualizaciones a múltiples URLs.
+
+
 ## Referencias
 
 - [IONOS documentation > DNS API](https://developer.hosting.ionos.es/docs/dns)
